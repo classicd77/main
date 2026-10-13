@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeadFlow CRM</title>
+  <meta name="description" content="מערכת CRM לניהול לידים, מעקב, דוחות, קבצים שיווקיים ושליחת מיילים" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c9a24a'/%3E%3Cpath d='M9 22V10h3v9h7v3z' fill='%23111'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    try { const t = localStorage.getItem('crm.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">L</div>
+        <div>
+          <div class="brand-name">LeadFlow</div>
+          <div class="brand-sub" id="brandSub">ניהול לידים והשקעות</div>
+        </div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#/dashboard" data-route="dashboard"><span class="ic" data-icon="grid"></span>דשבורד</a>
+        <a href="#/leads" data-route="leads"><span class="ic" data-icon="users"></span>לידים<span class="pill" id="navLeadCount"></span></a>
+        <a href="#/pipeline" data-route="pipeline"><span class="ic" data-icon="kanban"></span>צנרת מכירות</a>
+        <a href="#/followups" data-route="followups"><span class="ic" data-icon="bell"></span>מעקב ותזכורות<span class="pill warn" id="navDueCount"></span></a>
+        <a href="#/inbox" data-route="inbox"><span class="ic" data-icon="inbox"></span>קליטה ממייל<span class="pill" id="navInboxCount"></span></a>
+        <a href="#/emails" data-route="emails"><span class="ic" data-icon="send"></span>מיילים</a>
+        <a href="#/files" data-route="files"><span class="ic" data-icon="folder"></span>קבצים שיווקיים</a>
+        <a href="#/reports" data-route="reports"><span class="ic" data-icon="chart"></span>דוחות</a>
+      </nav>
+      <div class="nav-section">
+        <div class="nav-title">תיקים<button class="icon-btn sm" id="addFolderBtn" title="תיק חדש"><span data-icon="plus"></span></button></div>
+        <div id="folderNav" class="folder-nav"></div>
+      </div>
+      <div class="sidebar-foot">
+        <a href="#/settings" data-route="settings" class="nav-link-foot"><span class="ic" data-icon="settings"></span>הגדרות</a>
+        <button class="icon-btn" id="themeToggle" title="מצב תצוגה"><span data-icon="moon"></span></button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-only" id="menuBtn" title="תפריט"><span data-icon="menu"></span></button>
+        <div class="search">
+          <span data-icon="search"></span>
+          <input id="globalSearch" type="search" placeholder="חיפוש ליד לפי שם, טלפון, מייל, עיר…" autocomplete="off" />
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn ghost" id="quickImportBtn"><span data-icon="inbox"></span><span class="hide-sm">קליטה ממייל</span></button>
+          <button class="btn primary" id="quickAddBtn"><span data-icon="plus"></span><span class="hide-sm">ליד חדש</span></button>
+        </div>
+      </header>
+      <main id="view" class="view" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <div id="chartTip" class="chart-tip" hidden></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
